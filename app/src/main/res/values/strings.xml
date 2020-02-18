@@ -1,3 +1,59 @@
 <resources>
     <string name="app_name">AsiaEast</string>
+    <string name="select_city">Select City</string>
+    <string name="select_country">Select Country</string>
+    <string name="title">Start finding travel itineraries in east Asia!</string>
+    <string-array name="countries">
+        <item>South Korea</item>
+        <item>Japan</item>
+        <item>Taiwan</item>
+        <item>Thailand</item>
+        <item>Vietnam</item>
+        <item>China</item>
+    </string-array>
+    <string-array name="korean_cities">
+        <item>Seoul</item>
+        <item>Busan</item>
+        <item>Jeonju</item>
+        <item>Sokcho</item>
+        <item>Seogwipo</item>
+    </string-array>
+    <string-array name="japanese_cities">
+        <item>Kobe</item>
+        <item>Osaka</item>
+        <item>Sapporo</item>
+        <item>Tokyo</item>
+        <item>Fukuoka</item>
+        <item>Tottori</item>
+        <item>Kumamoto</item>
+        <item>Nagasaki</item>
+        <item>Kochi</item>
+        <item>Matsuyama</item>
+        <item>Kyoto</item>
+        <item>Iga</item>
+        <item>Takamatsu</item>
+        <item>Hiroshima</item>
+        <item>Okayama</item>
+        <item>Tokushima</item>
+        <item>Himeji</item>
+        <item>Oita</item>
+    </string-array>
+    <string-array name="taiwanese_cities">
+        <item>Taipei</item>
+        <item>Jiufen</item>
+    </string-array>
+    <string-array name="thai_cities">
+        <item>Bangkok</item>
+        <item>Chiang Mai</item>
+    </string-array>
+    <string-array name="vietnamese_cities">
+        <item>Hanoi</item>
+        <item>Ho Chi Minh</item>
+        <item>Danang</item>
+    </string-array>
+    <string-array name="chinese_cities">
+        <item>Shanghai</item>
+        <item>Shenzhen</item>
+        <item>Beijing</item>
+    </string-array>
 </resources>
