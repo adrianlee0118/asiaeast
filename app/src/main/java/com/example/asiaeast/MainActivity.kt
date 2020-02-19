@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.asiaeast.databinding.ActivityMainBinding
@@ -18,9 +17,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        //The two arrays for the spinner adapters. Cities is var because it depends on countries' selection.
+        //The arrays for the spinner adapters. Cities is var because it depends on countries' selection.
         val countries = resources.getStringArray(R.array.countries)
         var cities = arrayOf("Please choose a country first")
+        val days = arrayOf(1,2,3,4,5,6,7)
 
         //Set the country spinner
         if (binding.countrySpinner != null) {
@@ -71,5 +71,25 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        if (binding.daySpinner != null) {
+            val dayadapter = ArrayAdapter(this, R.layout.spinner_item, days)
+            dayadapter.setDropDownViewResource(R.layout.spinner_item)
+            binding.daySpinner.adapter = dayadapter
+            binding.daySpinner.setPrompt("Please Select")
+
+            binding.daySpinner.onItemSelectedListener = object :
+                AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                    Toast.makeText(this@MainActivity, getString(R.string.selected_item) + " " + "" + days[position], Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {
+                    Toast.makeText(this@MainActivity, "Please select a duration", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+        
     }
 }
