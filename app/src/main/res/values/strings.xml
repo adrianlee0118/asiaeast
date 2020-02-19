@@ -3,6 +3,8 @@
     <string name="select_city">Select City</string>
     <string name="select_country">Select Country</string>
     <string name="title">Start finding travel itineraries in east Asia!</string>
+    <string name="how_many_days">How many days do you have in this location?</string>
+    <string name="selected_item">Selected item:</string>
     <string-array name="countries">
         <item>South Korea</item>
         <item>Japan</item>
@@ -56,4 +58,5 @@
         <item>Shenzhen</item>
         <item>Beijing</item>
     </string-array>
+    <string name="title_activity_nav">NavActivity</string>
 </resources>
