@@ -90,6 +90,9 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        
+        binding.GoButton.setOnClickListener {
+            
+            Toast.makeText(this@MainActivity, "Let's Go.", Toast.LENGTH_SHORT).show()
+        }
     }
 }
