@@ -1,5 +1,6 @@
 package com.example.asiaeast
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -92,6 +93,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.GoButton.setOnClickListener {
 
+            val intent = Intent()
             Toast.makeText(this@MainActivity, "Let's start.", Toast.LENGTH_SHORT).show()
         }
     }
