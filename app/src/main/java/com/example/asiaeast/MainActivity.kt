@@ -93,7 +93,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.GoButton.setOnClickListener {
 
-            val intent = Intent()
+            //TODO: Intent
             Toast.makeText(this@MainActivity, "Let's start.", Toast.LENGTH_SHORT).show()
         }
     }
