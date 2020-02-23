@@ -94,6 +94,7 @@ class MainActivity : AppCompatActivity() {
         binding.GoButton.setOnClickListener {
 
             //TODO: Intent
+            //Next activity to use the information from spinners
             Toast.makeText(this@MainActivity, "Let's start.", Toast.LENGTH_SHORT).show()
         }
     }
