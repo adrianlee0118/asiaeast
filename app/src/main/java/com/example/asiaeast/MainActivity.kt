@@ -93,9 +93,12 @@ class MainActivity : AppCompatActivity() {
 
         binding.GoButton.setOnClickListener {
 
-            //TODO: Intent
-            //Next activity to use the information from spinners
             Toast.makeText(this@MainActivity, "Let's start.", Toast.LENGTH_SHORT).show()
+            intent = Intent(this, NavActivity::class.java)
+            intent.putExtra("country", binding.countrySpinner.selectedItem.toString())
+            intent.putExtra("city", binding.citySpinner.selectedItem.toString())
+            intent.putExtra("days", binding.daySpinner.selectedItem.toString())
+            startActivity(intent)
         }
     }
 }
