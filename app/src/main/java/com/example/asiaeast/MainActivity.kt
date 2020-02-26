@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         //The arrays for the spinner adapters. Cities is var because it depends on countries' selection.
         val countries = resources.getStringArray(R.array.countries)
-        var cities = arrayOf("Please choose a country first")
+        var cities = arrayOf("Please choose a country first.")
         val days = arrayOf(1,2,3,4,5,6,7)
 
         //Set the country spinner
@@ -42,14 +42,14 @@ class MainActivity : AppCompatActivity() {
                         "Vietnam" -> resources.getStringArray(R.array.vietnamese_cities)
                         "China" -> resources.getStringArray(R.array.chinese_cities)
                         else -> {
-                            arrayOf("Please choose a country first")
+                            arrayOf("Please choose a country first.")
                         }
                     }
                     Toast.makeText(this@MainActivity, getString(R.string.selected_item) + " " + "" + countries[position], Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                    Toast.makeText(this@MainActivity, "Please select a country", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "Please select a country.", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                    Toast.makeText(this@MainActivity, "Please select a city", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "Please select a city.", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                    Toast.makeText(this@MainActivity, "Please select a duration", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "Please select a duration.", Toast.LENGTH_SHORT).show()
                 }
             }
         }
