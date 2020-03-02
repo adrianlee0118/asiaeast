@@ -98,6 +98,7 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("country", binding.countrySpinner.selectedItem.toString())
             intent.putExtra("city", binding.citySpinner.selectedItem.toString())
             intent.putExtra("days", binding.daySpinner.selectedItem.toString())
+            intent.putExtra("empty","")
             startActivity(intent)
         }
     }
