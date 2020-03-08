@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         //The arrays for the spinner adapters. Cities is var because it depends on countries' selection.
         val countries = resources.getStringArray(R.array.countries)
         var cities = arrayOf("Please choose a country first.")
-        val days = arrayOf(1,2,3,4,5,6,7)
+        val days = resources.getStringArray(R.array.days)
 
         //Set the country spinner
         if (binding.countrySpinner != null) {
