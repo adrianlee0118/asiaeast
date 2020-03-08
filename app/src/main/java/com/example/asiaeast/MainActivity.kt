@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
         binding.GoButton.setOnClickListener {
 
             Toast.makeText(this@MainActivity, "Let's start.", Toast.LENGTH_SHORT).show()
-            intent = Intent(this, NavActivity::class.java)
+            intent = Intent(this, MapConfigActivity::class.java)
             intent.putExtra("country", binding.countrySpinner.selectedItem.toString())
             intent.putExtra("city", binding.citySpinner.selectedItem.toString())
             intent.putExtra("days", binding.daySpinner.selectedItem.toString())
