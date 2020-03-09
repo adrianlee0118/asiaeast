@@ -67,6 +67,10 @@
         <item>Shenzhen</item>
         <item>Beijing</item>
     </string-array>
-    <string name="title_activity_nav">NavActivity</string>
     <string name="gobtn">Go</string>
+    <string name="go_to_map">Go to Map</string>
+    <string name="edit_pref">Edit Trip Preferences</string>
+    <string name="schedule_and_preview">Make Schedule and Preview</string>
+    <string name="send_to_email">Send Schedule to Email</string>
+
 </resources>
