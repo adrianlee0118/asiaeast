@@ -15,7 +15,7 @@
             android:title="@string/schedule_and_preview" />
     </group>
 
-    <item android:title="Share">
+    <item android:title="@string/share">
         <menu>
             <item
                 android:id="@+id/mapItemSendToEmail"

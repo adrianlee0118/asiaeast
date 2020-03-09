@@ -72,5 +72,7 @@
     <string name="edit_pref">Edit Trip Preferences</string>
     <string name="schedule_and_preview">Make Schedule and Preview</string>
     <string name="send_to_email">Send Schedule to Email</string>
+    <string name="map_config_activity">MapConfigActivity</string>
+    <string name="share">Share</string>
 
 </resources>
