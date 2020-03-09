@@ -74,5 +74,7 @@
     <string name="send_to_email">Send Schedule to Email</string>
     <string name="map_config_activity">MapConfigActivity</string>
     <string name="share">Share</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
 </resources>

@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.asiaeast.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class StartInputActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
@@ -33,7 +33,12 @@ class MainActivity : AppCompatActivity() {
 
             binding.countrySpinner.onItemSelectedListener = object :
                 AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
+                override fun onItemSelected(
+                    parent: AdapterView<*>,
+                    view: View,
+                    position: Int,
+                    id: Long
+                ) {
                     cities = when (countries[position]) {
                         "South Korea" -> resources.getStringArray(R.array.korean_cities)
                         "Japan" -> resources.getStringArray(R.array.japanese_cities)
@@ -45,11 +50,19 @@ class MainActivity : AppCompatActivity() {
                             arrayOf("Please choose a country first.")
                         }
                     }
-                    Toast.makeText(this@MainActivity, getString(R.string.selected_item) + " " + "" + countries[position], Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@StartInputActivity,
+                        getString(R.string.selected_item) + " " + "" + countries[position],
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                    Toast.makeText(this@MainActivity, "Please select a country.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@StartInputActivity,
+                        "Please select a country.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
@@ -63,12 +76,22 @@ class MainActivity : AppCompatActivity() {
 
             binding.citySpinner.onItemSelectedListener = object :
                 AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    Toast.makeText(this@MainActivity, getString(R.string.selected_item) + " " + "" + cities[position], Toast.LENGTH_SHORT).show()
+                override fun onItemSelected(
+                    parent: AdapterView<*>,
+                    view: View,
+                    position: Int,
+                    id: Long
+                ) {
+                    Toast.makeText(
+                        this@StartInputActivity,
+                        getString(R.string.selected_item) + " " + "" + cities[position],
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                    Toast.makeText(this@MainActivity, "Please select a city.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@StartInputActivity, "Please select a city.", Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         }
@@ -81,19 +104,32 @@ class MainActivity : AppCompatActivity() {
 
             binding.daySpinner.onItemSelectedListener = object :
                 AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    Toast.makeText(this@MainActivity, getString(R.string.selected_item) + " " + "" + days[position], Toast.LENGTH_SHORT).show()
+                override fun onItemSelected(
+                    parent: AdapterView<*>,
+                    view: View,
+                    position: Int,
+                    id: Long
+                ) {
+                    Toast.makeText(
+                        this@StartInputActivity,
+                        getString(R.string.selected_item) + " " + "" + days[position],
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
-                    Toast.makeText(this@MainActivity, "Please select a duration.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@StartInputActivity,
+                        "Please select a duration.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
 
         binding.GoButton.setOnClickListener {
 
-            Toast.makeText(this@MainActivity, "Let's start.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@StartInputActivity, "Let's start.", Toast.LENGTH_SHORT).show()
             intent = Intent(this, MapConfigActivity::class.java)
             intent.putExtra("country", binding.countrySpinner.selectedItem.toString())
             intent.putExtra("city", binding.citySpinner.selectedItem.toString())
