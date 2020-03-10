@@ -16,7 +16,7 @@ class StartInputActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.spinner_activity_page)
 
         //The arrays for the spinner adapters. Cities is var because it depends on countries' selection.
         val countries = resources.getStringArray(R.array.countries)

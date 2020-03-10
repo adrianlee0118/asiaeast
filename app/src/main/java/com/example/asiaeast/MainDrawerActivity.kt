@@ -11,7 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.*         //Kotlin Android extension: can find views without findViewById()
 
 class MainDrawerActivity : AppCompatActivity() {
 
@@ -20,7 +20,7 @@ class MainDrawerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.spinner_activity_page)
 
         navController = findNavController(R.id.main_nav_host) //Initialising navController
 
