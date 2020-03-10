@@ -68,13 +68,9 @@
         <item>Beijing</item>
     </string-array>
     <string name="gobtn">Go</string>
-    <string name="go_to_map">Go to Map</string>
-    <string name="edit_pref">Edit Trip Preferences</string>
-    <string name="schedule_and_preview">Make Schedule and Preview</string>
-    <string name="send_to_email">Send Schedule to Email</string>
-    <string name="map_config_activity">MapConfigActivity</string>
-    <string name="share">Share</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="map">Map</string>
+    <string name="inputs">Inputs</string>
+    <string name="preview">Preview</string>
+    <string name="send">Send to Email</string>
 
 </resources>

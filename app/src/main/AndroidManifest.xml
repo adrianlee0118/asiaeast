@@ -29,15 +29,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".MapConfigActivity"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:label="@string/map_config_activity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.asiaeast.StartInputActivity" />
-        </activity>
-        <activity android:name=".StartInputActivity">
+        <activity android:name=".MainDrawerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

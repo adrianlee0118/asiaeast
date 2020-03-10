@@ -5,13 +5,18 @@
     <!--Each item id should be same as in the nav_graph fragment id-->
 
     <item
-        android:id="@+id/homeFragment"
-        android:icon="@drawable/ic_home"
-        android:title="@string/home" />
+        android:id="@+id/editInputsFragment"
+        android:icon="@drawable/ic_edit_inputs"
+        android:title="@string/inputs" />
 
     <item
-        android:id="@+id/accountsFragment"
-        android:icon="@drawable/ic_person"
-        android:title="@string/account" />
+        android:id="@+id/mapFragment"
+        android:icon="@drawable/ic_map"
+        android:title="@string/map" />
+
+    <item
+        android:id="@+id/schedulePreviewFragment"
+        android:icon="@drawable/ic_make_schedule_and_preview"
+        android:title="@string/preview" />
 
 </menu>

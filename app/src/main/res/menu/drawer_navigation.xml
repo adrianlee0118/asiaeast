@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--Each item id should be same as in the nav_graph fragment id-->
 
     <item
-        android:id="@+id/dashboardFragment"
-        android:icon="@drawable/ic_dashboard"
-        android:title="@string/dashboard" />
+        android:id="@+id/editInputsFragment"
+        android:icon="@drawable/ic_edit_inputs"
+        android:title="@string/inputs" />
 
     <item
-        android:id="@+id/settingsFragment"
-        android:icon="@drawable/ic_settings"
-        android:title="@string/settings" />
+        android:id="@+id/mapFragment"
+        android:icon="@drawable/ic_map"
+        android:title="@string/map" />
+
+    <item
+        android:id="@+id/schedulePreviewFragment"
+        android:icon="@drawable/ic_make_schedule_and_preview"
+        android:title="@string/preview" />
+
+    <item
+        android:id="@+id/mapItemSendToEmail"
+        android:icon="@drawable/ic_send_to_email"
+        android:title="@string/send" />
+
 
 </menu>

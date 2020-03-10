@@ -20,32 +20,31 @@ class MainDrawerActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.spinner_activity_page)
+        setContentView(R.layout.activity_main)
 
-        navController = findNavController(R.id.main_nav_host) //Initialising navController
+        navController = findNavController(R.id.main_nav_host)
 
-        appBarConfiguration = AppBarConfiguration.Builder(R.id.homeFragment, R.id.accountsFragment,
-            R.id.dashboardFragment, R.id.settingsFragment) //Pass the ids of fragments from nav_graph which you d'ont want to show back button in toolbar
+        appBarConfiguration = AppBarConfiguration.Builder(R.id.editInputsFragment, R.id.mapFragment,
+            R.id.schedulePreviewFragment) //Pass the ids of fragments from nav_graph which you d'ont want to show back button in toolbar
             .setDrawerLayout(main_drawer_layout) //Pass the drawer layout id from activity xml
             .build()
 
         setSupportActionBar(main_toolbar) //Set toolbar
 
-        setupActionBarWithNavController(navController, appBarConfiguration) //Setup toolbar with back button and drawer icon according to appBarConfiguration
+        setupActionBarWithNavController(navController, appBarConfiguration)
 
-        visibilityNavElements(navController) //If you want to hide drawer or bottom navigation configure that in this function
+        visibilityNavElements(navController)
     }
 
     private fun visibilityNavElements(navController: NavController) {
 
-        //Listen for the change in fragment (navigation) and hide or show drawer or bottom navigation accordingly if required
-        //Modify this according to your need
-        //If you want you can implement logic to deselect(styling) the bottom navigation menu item when drawer item selected using listener
+        //makes the two menus appear or disappear depending on which fragment is showing
+        //in this case, bottom navigation only shows when we are on the schedule preview fragment
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.profileFragment -> hideBothNavigation()
-                R.id.settingsFragment -> hideBottomNavigation()
+                R.id.mapFragment -> hideBothNavigation()
+                R.id.editInputsFragment -> hideBottomNavigation()
                 else -> showBothNavigation()
             }
         }
