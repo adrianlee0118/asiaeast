@@ -13,6 +13,9 @@
         <item>Vietnam</item>
         <item>China</item>
     </string-array>
+    <string-array name="citydefault">
+        <item>Please select a country first</item>
+    </string-array>
     <string-array name="days">
         <item>1</item>
         <item>2</item>

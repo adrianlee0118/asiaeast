@@ -72,9 +72,9 @@ class MainDrawerActivity : AppCompatActivity() {
         setupNavControl() //To configure navController with drawer and bottom navigation
     }
 
-    private fun setupNavControl() {
-        main_navigation_view?.setupWithNavController(navController) //Setup Drawer navigation with navController
-        main_bottom_navigation_view?.setupWithNavController(navController) //Setup Bottom navigation with navController
+    private fun setupNavControl() {        //attach the menu layouts to the drawer and the bottom navigation structures
+        main_navigation_view?.setupWithNavController(navController)
+        main_bottom_navigation_view?.setupWithNavController(navController)
     }
 
     fun exitApp() { //To exit the application call this function from fragment
