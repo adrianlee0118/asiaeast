@@ -18,18 +18,25 @@ class MainDrawerActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
 
+    private var country = "None"     //These inputs will be properly initialized in the EditInputsFragment
+    private var city = "None"
+    private var days = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         navController = findNavController(R.id.main_nav_host)
 
-        appBarConfiguration = AppBarConfiguration.Builder(R.id.editInputsFragment, R.id.mapFragment,
-            R.id.schedulePreviewFragment) //Pass the ids of fragments from nav_graph which you d'ont want to show back button in toolbar
-            .setDrawerLayout(main_drawer_layout) //Pass the drawer layout id from activity xml
+        appBarConfiguration = AppBarConfiguration.Builder(
+                R.id.editInputsFragment,
+                R.id.mapFragment,
+                R.id.schedulePreviewFragment
+            )
+            .setDrawerLayout(main_drawer_layout)
             .build()
 
-        setSupportActionBar(main_toolbar) //Set toolbar
+        setSupportActionBar(main_toolbar)
 
         setupActionBarWithNavController(navController, appBarConfiguration)
 
