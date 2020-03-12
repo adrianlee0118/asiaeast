@@ -18,7 +18,9 @@ class MainDrawerActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
 
-
+    private var country = "None"     //These inputs will be properly initialized in the EditInputsFragment
+    private var city = "None"
+    private var days = -1
 
     //Add a viewmodel class containing the variables above as livedata so that their state persists no matter what fragments are created
 
