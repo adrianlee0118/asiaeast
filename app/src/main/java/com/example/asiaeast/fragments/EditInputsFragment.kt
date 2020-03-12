@@ -8,16 +8,18 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.asiaeast.InputFragmentDirections
-import com.example.asiaeast.MainDrawerActivity
 import com.example.asiaeast.R
+import com.example.asiaeast.models.MainViewModel
 import kotlinx.android.synthetic.main.fragment_edit_inputs.*
 
 class EditInputsFragment : Fragment(), View.OnClickListener {
 
     private lateinit var navController: NavController
+    private val mainViewModel: MainViewModel by activityViewModels()   //declaration allows access to root activity viewmodel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,7 +56,7 @@ class EditInputsFragment : Fragment(), View.OnClickListener {
                 position: Int,
                 id: Long
             ) {
-                cities = when (country_spinner.selectedItem.toString()) {
+                cities = when (mainViewModel.getCountry().toString()) {
                     "South Korea" -> R.array.korean_cities
                     "Japan" -> R.array.japanese_cities
                     "Taiwan" -> R.array.taiwanese_cities
@@ -63,6 +65,7 @@ class EditInputsFragment : Fragment(), View.OnClickListener {
                     "China" -> R.array.chinese_cities
                     else -> R.array.citydefault
                 }
+                mainViewModel.setCountry(country_spinner.selectedItem.toString())
                 Toast.makeText(
                     getActivity()!!.getBaseContext(),
                     getString(R.string.selected_item) + " " + "" + country_spinner.selectedItem.toString(),
@@ -96,6 +99,7 @@ class EditInputsFragment : Fragment(), View.OnClickListener {
                 position: Int,
                 id: Long
             ) {
+                mainViewModel.setCity(city_spinner.selectedItem.toString())
                 Toast.makeText(
                     getActivity()!!.getBaseContext(),
                     getString(R.string.selected_item) + " " + "" + city_spinner.selectedItem.toString(),
@@ -129,6 +133,7 @@ class EditInputsFragment : Fragment(), View.OnClickListener {
                 position: Int,
                 id: Long
             ) {
+                mainViewModel.setDays(Integer.parseInt(day_spinner.selectedItem.toString()))
                 Toast.makeText(
                     getActivity()!!.getBaseContext(),
                     getString(R.string.selected_item) + " " + "" + day_spinner.selectedItem.toString(),
@@ -146,9 +151,6 @@ class EditInputsFragment : Fragment(), View.OnClickListener {
         }
 
         GoButton.setOnClickListener(this)
-        /*country_spinner.selectedItem.toString()
-        city_spinner.selectedItem.toString()
-        daySpinner.selectedItem.toString()          //to be sent up to main activity*/
     }
 
     override fun onClick(v: View?) { //When click occurs this function triggers a function based on id of clicked view

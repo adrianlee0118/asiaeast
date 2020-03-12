@@ -2,9 +2,11 @@ package com.example.asiaeast
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -19,17 +21,15 @@ class MainDrawerActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
 
-    private lateinit var mainViewModel: MainViewModel
-
     //Add a viewmodel class containing the variables above as livedata so that their state persists no matter what fragments are created
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)    //Create viewmodel for the first time, persists through all fragments
-
         navController = findNavController(R.id.main_nav_host)
+
+        val mainViewModel:MainViewModel by viewModels()       //Create viewmodel for the first time, persists through lifecycle of activity (through all fragments)
 
         appBarConfiguration = AppBarConfiguration.Builder(
                 R.id.editInputsFragment,

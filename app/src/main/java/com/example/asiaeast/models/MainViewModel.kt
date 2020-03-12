@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
 
-    private val country = MutableLiveData<String>()
-    private val city = MutableLiveData<String>()
-    private val days = MutableLiveData<Int>()
+    private val country = MutableLiveData<String>("")
+    private val city = MutableLiveData<String>("")
+    private val days = MutableLiveData<Int>(-1)
 
     fun getCountry(): LiveData<String> {
         return country
