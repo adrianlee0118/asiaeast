@@ -17,10 +17,7 @@ class MainDrawerActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
-
-    private var country = "None"     //These inputs will be properly initialized in the EditInputsFragment
-    private var city = "None"
-    private var days = -1
+    
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
