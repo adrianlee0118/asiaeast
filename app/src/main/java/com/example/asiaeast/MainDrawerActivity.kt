@@ -1,8 +1,8 @@
 package com.example.asiaeast
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -11,22 +11,23 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import kotlinx.android.synthetic.main.activity_main.*         //Kotlin Android extension: can find views without findViewById()
+import com.example.asiaeast.models.MainViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainDrawerActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
 
-    private var country = "None"     //These inputs will be properly initialized in the EditInputsFragment
-    private var city = "None"
-    private var days = -1
+    private lateinit var mainViewModel: MainViewModel
 
     //Add a viewmodel class containing the variables above as livedata so that their state persists no matter what fragments are created
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)    //Create viewmodel for the first time, persists through all fragments
 
         navController = findNavController(R.id.main_nav_host)
 
