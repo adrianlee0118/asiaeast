@@ -11,7 +11,7 @@ class MainViewModel : ViewModel() {
     private val country = MutableLiveData<String>("")
     private val city = MutableLiveData<String>("")
     private val days = MutableLiveData<Int>(-1)
-    //private val locations = MutableLiveData<List<Location_Records>>()           to be provided by database
+    private val locations = MutableLiveData<List<String>>()           //to be provided by database
 
     init {
         viewModelScope.launch {
