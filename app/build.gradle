@@ -13,6 +13,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -20,14 +22,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    dataBinding{
-        enabled = true
-    }
 }
 
 dependencies {
     def lifecycle_version = "2.2.0"
-    def arch_version = "2.1.0"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -59,8 +57,15 @@ dependencies {
     // Annotation processor
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 
-    //Firebase
-    implementation 'com.google.firebase:firebase-analytics:17.2.2'
+    // Firestore
+    implementation 'com.google.firebase:firebase-firestore-ktx:21.4.1'
+
+    // Other Firebase/Play services deps
+    implementation 'com.google.firebase:firebase-auth:19.2.0'
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+
+    // FirebaseUI (for authentication)
+    implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
