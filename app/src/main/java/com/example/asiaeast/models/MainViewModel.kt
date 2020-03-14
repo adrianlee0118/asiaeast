@@ -13,12 +13,7 @@ class MainViewModel : ViewModel() {
     private val days = MutableLiveData<Int>(-1)
     private val locations = MutableLiveData<List<String>>()           //to be provided by database
 
-    init {
-        viewModelScope.launch {
-            // Coroutine that will be canceled when the ViewModel is cleared.
-            // Use this coroutine to load data from Firebase or from TripAdvisor API asynchronously
-        }
-    }
+
 
     fun getCountry(): LiveData<String> {
         return country
