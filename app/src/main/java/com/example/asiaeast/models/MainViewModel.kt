@@ -3,22 +3,18 @@ package com.example.asiaeast.models
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
+import com.google.firebase.firestore.CollectionReference
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MainViewModel : ViewModel() {
+
+    private val firestoreDB = FirebaseFirestore.getInstance()       //access to Firebase cloud DB
+    private val destinationRef = firestoreDB.collection("destinations")
 
     private val country = MutableLiveData<String>("")
     private val city = MutableLiveData<String>("")
     private val days = MutableLiveData<Int>(-1)
-    private val locations = MutableLiveData<List<String>>()           //to be provided by database
-
-    init {
-        viewModelScope.launch {
-            // Coroutine that will be canceled when the ViewModel is cleared.
-            // Use this coroutine to load data from Firebase or from TripAdvisor API asynchronously
-        }
-    }
+    private lateinit var locations: MutableLiveData<List<String>>           //to be provided by database
 
     fun getCountry(): LiveData<String> {
         return country
