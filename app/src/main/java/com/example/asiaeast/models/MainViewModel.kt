@@ -46,5 +46,22 @@ class MainViewModel : ViewModel() {
         days = ndays
     }
 
+    fun getDestinations(): LiveData<List<Destination>>{                                 //listener to update destination variable when db is changed
+        destinationRef.addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
+            if (e != null) {
+                Log.w(TAG, "Listen failed.", e)
+                destinations.value = null
+                return@EventListener
+            }
 
+            var savedDestinations : MutableList<Destination> = mutableListOf()
+            for (doc in value!!) {
+                var DestinationItem = doc.toObject(Destination::class.java)
+                savedDestinations.add(DestinationItem)
+            }
+            destinations.value = savedDestinations
+        })
+
+        return destinations
+    }
 }
