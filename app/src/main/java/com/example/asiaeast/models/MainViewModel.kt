@@ -5,21 +5,35 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
+import kotlinx.coroutines.launch
 
-class MainViewModel : ViewModel() {
-
-    private val firestoreDB = FirebaseFirestore.getInstance()       //access to Firebase cloud DB
-    private val destinationRef = firestoreDB.collection("destinations")
+class MainViewModel : ViewModel {
 
     private var country = ""                                                        //default values
     private var city = ""
     private var days = -1
-    private lateinit var destinations: MutableLiveData<List<Destination>>           //to be provided by database
 
+    private val mutableSearchedDestinations: MutableLiveData<List<Destination>> = MutableLiveData()
+    val searchedDestination: LiveData<List<Destination>> = mutableSearchedDestinations
+
+    constructor(
+        searchDestinationsRepository: MainFirestoreRepository
+    ){
+
+    }
+
+    init {
+        viewModelScope.launch {
+            runCatching {
+                MainFirestoreRepository.findAll()
+            }.onSuccess { repos -> mutableSearchedDestinations.value = repos }
+        }
+    }
     fun getCountry(): String {
         return country
     }
