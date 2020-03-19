@@ -1,7 +1,5 @@
 package com.example.asiaeast.models
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,8 +19,10 @@ class MainViewModel : ViewModel() {
     init {
         viewModelScope.launch {
             runCatching {
-                MainFirestoreRepository.findAll()
-            }.onSuccess { repos -> mutableSearchedDestinations.value = repos }
+
+            }.onSuccess {
+
+            }
         }
     }
 
