@@ -20,12 +20,7 @@ class MainViewModel : ViewModel {
 
     private val mutableSearchedDestinations: MutableLiveData<List<Destination>> = MutableLiveData()
     val searchedDestination: LiveData<List<Destination>> = mutableSearchedDestinations
-
-    constructor(
-        searchDestinationsRepository: MainFirestoreRepository
-    ){
-
-    }
+    
 
     init {
         viewModelScope.launch {
