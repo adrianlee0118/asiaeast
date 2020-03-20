@@ -17,8 +17,8 @@ class MainViewModel : ViewModel() {
     var firebaseRepository = MainFirestoreRepository()
     private val destinationList: MutableLiveData<List<Destination>> = MutableLiveData()
 
-
-    fun getSavedDestinations(): LiveData<List<Destination>>{
+    // get realtime updates from firebase regarding saved destinations
+    fun getDestinations(): LiveData<List<Destination>>{
         firebaseRepository.getDestinations().addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
             if (e != null) {
                 Log.w(TAG, "Listen failed.", e)
