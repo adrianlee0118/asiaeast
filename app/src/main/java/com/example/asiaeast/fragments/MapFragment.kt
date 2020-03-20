@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -36,8 +37,16 @@ class MapFragment : Fragment() {
         //Get data into destinations list, maintain a LiveData observer--when the FirestoreDB changes, MainViewModel's getDestinations() updates the LiveData
         //and that will update the variable destinations in this fragment
         mainViewModel.getDestinations().observe(this, Observer { it ->
-            destinations = it
-            plotMap()             //update UI after data updated
+            if (it == null) {
+                Toast.makeText(
+                    getActivity()!!.getBaseContext(),
+                    "Please enter all inputs first",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                destinations = it
+                plotMap()             //update UI after data updated
+            }
         })
     }
 

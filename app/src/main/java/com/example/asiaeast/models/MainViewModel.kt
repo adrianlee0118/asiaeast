@@ -9,16 +9,21 @@ import com.google.firebase.firestore.QuerySnapshot
 
 class MainViewModel : ViewModel() {
 
-    val TAG = "MAIN_VIEW_MODEL"
+    private val TAG = "MAIN_VIEW_MODEL"
     private var country = ""              //default values
     private var city = ""
     private var days = -1
 
-    var firebaseRepository = MainFirestoreRepository()
+    private val firebaseRepository = MainFirestoreRepository()
     private val destinations: MutableLiveData<List<Destination>> = MutableLiveData()
 
     // get realtime updates from Firestore DB regarding saved destinations, filter by city
     fun getDestinations(): LiveData<List<Destination>> {
+        if (city == "") {
+            destinations.value = null
+            return destinations
+        }
+
         firebaseRepository
             .getDestinations()
             .whereEqualTo("city", city)
