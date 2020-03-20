@@ -30,12 +30,18 @@ class SchedulePreviewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        navController = findNavController() //Initialising navController and linking UI to mainViewModel's data using observers
+        navController =
+            findNavController() //Initialising navController and linking UI to mainViewModel's data using observers
 
         //Get data into destinations list, maintain a LiveData observer--when the FirestoreDB changes, MainViewModel's getDestinations() updates the LiveData
         //and that will update the variable destinations in this fragment
-        mainViewModel.getDestinations().observe(this, Observer { it->
+        mainViewModel.getDestinations().observe(this, Observer { it ->
             destinations = it
+            makeSched()           //update UI after data updated
         })
+    }
+
+    fun makeSched() {
+
     }
 }
