@@ -15,26 +15,28 @@ class MainViewModel : ViewModel() {
     private var days = -1
 
     var firebaseRepository = MainFirestoreRepository()
-    private val destinationList: MutableLiveData<List<Destination>> = MutableLiveData()
+    private val destinations: MutableLiveData<List<Destination>> = MutableLiveData()
 
-    // get realtime updates from firebase regarding saved destinations
+    // get realtime updates from firebase regarding saved destinations, filter by city
     fun getDestinationList(): LiveData<List<Destination>>{
-        firebaseRepository.getDestinations(country,city).addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
+        firebaseRepository.getDestinations()
+            .whereEqualTo("city",city)
+            .addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
             if (e != null) {
                 Log.w(TAG, "Listen failed.", e)
-                destinationList.value = null
+                destinations.value = null
                 return@EventListener
             }
 
-            var savedDestinations : MutableList<Destination> = mutableListOf()
+            var destlist : MutableList<Destination> = mutableListOf()
             for (doc in value!!) {
                 var destinationItem = doc.toObject(Destination::class.java)
-                savedDestinations.add(destinationItem)
+                destlist.add(destinationItem)
             }
-            destinationList.value = savedDestinations
+            destinations.value = destlist
         })
 
-        return destinationList
+        return destinations
     }
 
     fun getCountry(): String {
