@@ -2,15 +2,11 @@ package com.example.asiaeast.models
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.async
 
 class MainFirestoreRepository {
 
+    val TAG = "FIREBASE_REPOSITORY"
     private var firestoreDB = FirebaseFirestore.getInstance() //access to Firebase cloud DB
     var user = FirebaseAuth.getInstance().currentUser!!
 

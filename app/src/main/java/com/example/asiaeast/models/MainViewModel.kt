@@ -1,10 +1,12 @@
 package com.example.asiaeast.models
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.QuerySnapshot
 
 class MainViewModel : ViewModel() {
 
@@ -12,18 +14,27 @@ class MainViewModel : ViewModel() {
     private var city = ""
     private var days = -1
 
-    private val mutableSearchedDestinations: MutableLiveData<List<Destination>> = MutableLiveData()
-    val searchedDestination: LiveData<List<Destination>> = mutableSearchedDestinations
+    var firebaseRepository = MainFirestoreRepository()
+    private val destinationList: MutableLiveData<List<Destination>> = MutableLiveData()
 
 
-    init {
-        viewModelScope.launch {
-            runCatching {
-
-            }.onSuccess {
-
+    fun getSavedDestinations(): LiveData<List<Destination>>{
+        firebaseRepository.getDestinations().addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
+            if (e != null) {
+                Log.w(TAG, "Listen failed.", e)
+                destinationList.value = null
+                return@EventListener
             }
-        }
+
+            var savedDestinations : MutableList<Destination> = mutableListOf()
+            for (doc in value!!) {
+                var destinationItem = doc.toObject(Destination::class.java)
+                savedDestinations.add(destinationItem)
+            }
+            destinationList.value = savedDestinations
+        })
+
+        return destinationList
     }
 
     fun getCountry(): String {
