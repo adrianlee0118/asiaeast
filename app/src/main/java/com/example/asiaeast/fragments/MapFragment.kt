@@ -29,11 +29,12 @@ class MapFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         navController = findNavController() //Initialising navController and linking UI to mainViewModel's data using observers--not super effectual in this map because screen is never occupied by more than one fragment at a time
-        mainViewModel.getCity().observe(this, Observer<String>{ city ->
+        
+        /*mainViewModel.getCity().observe(this, Observer<String>{ city ->
             // observe city value changes, update UI
         })
         mainViewModel.getDays().observe(this, Observer<Int>{ day ->
             // observe day value changes, update UI
-        })
+        })*/
     }
 }

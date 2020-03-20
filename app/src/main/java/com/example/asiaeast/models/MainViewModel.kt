@@ -18,23 +18,24 @@ class MainViewModel : ViewModel() {
     private val destinations: MutableLiveData<List<Destination>> = MutableLiveData()
 
     // get realtime updates from firebase regarding saved destinations, filter by city
-    fun getDestinationList(): LiveData<List<Destination>>{
-        firebaseRepository.getDestinations()
-            .whereEqualTo("city",city)
+    fun getDestinations(): LiveData<List<Destination>> {
+        firebaseRepository
+            .getDestinations()
+            .whereEqualTo("city", city)
             .addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
-            if (e != null) {
-                Log.w(TAG, "Listen failed.", e)
-                destinations.value = null
-                return@EventListener
-            }
+                if (e != null) {
+                    Log.w(TAG, "Listen failed.", e)
+                    destinations.value = null
+                    return@EventListener
+                }
 
-            var destlist : MutableList<Destination> = mutableListOf()
-            for (doc in value!!) {
-                var destinationItem = doc.toObject(Destination::class.java)
-                destlist.add(destinationItem)
-            }
-            destinations.value = destlist
-        })
+                var destlist: MutableList<Destination> = mutableListOf()
+                for (doc in value!!) {
+                    var destinationItem = doc.toObject(Destination::class.java)
+                    destlist.add(destinationItem)
+                }
+                destinations.value = destlist
+            })
 
         return destinations
     }
