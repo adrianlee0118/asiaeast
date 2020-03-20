@@ -1,6 +1,5 @@
 package com.example.asiaeast.models
 
-import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +9,8 @@ import com.google.firebase.firestore.QuerySnapshot
 
 class MainViewModel : ViewModel() {
 
-    private var country = ""                                                        //default values
+    val TAG = "MAIN_VIEW_MODEL"
+    private var country = ""              //default values
     private var city = ""
     private var days = -1
 
@@ -18,8 +18,8 @@ class MainViewModel : ViewModel() {
     private val destinationList: MutableLiveData<List<Destination>> = MutableLiveData()
 
     // get realtime updates from firebase regarding saved destinations
-    fun getDestinations(): LiveData<List<Destination>>{
-        firebaseRepository.getDestinations().addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
+    fun getDestinationList(): LiveData<List<Destination>>{
+        firebaseRepository.getDestinations(country,city).addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
             if (e != null) {
                 Log.w(TAG, "Listen failed.", e)
                 destinationList.value = null
