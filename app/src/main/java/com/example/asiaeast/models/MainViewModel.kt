@@ -17,7 +17,7 @@ class MainViewModel : ViewModel() {
     var firebaseRepository = MainFirestoreRepository()
     private val destinations: MutableLiveData<List<Destination>> = MutableLiveData()
 
-    // get realtime updates from firebase regarding saved destinations, filter by city
+    // get realtime updates from Firestore DB regarding saved destinations, filter by city
     fun getDestinations(): LiveData<List<Destination>> {
         firebaseRepository
             .getDestinations()
