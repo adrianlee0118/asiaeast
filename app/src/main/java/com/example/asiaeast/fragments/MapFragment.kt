@@ -35,7 +35,7 @@ class MapFragment : Fragment() {
             findNavController() //Initialising navController and linking UI to mainViewModel's data using observers--not super effectual in this map because screen is never occupied by more than one fragment at a time
 
         //Get data into destinations list, maintain a LiveData observer--when the FirestoreDB changes, MainViewModel's getDestinations() updates the LiveData
-        //and that will update the variable destinations in this fragment
+        //and that will update the variable destinations in this fragment and update UI accordingly
         mainViewModel.getDestinations().observe(this, Observer { it ->
             if (it == null) {
                 Toast.makeText(
