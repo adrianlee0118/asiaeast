@@ -24,6 +24,7 @@ class MainViewModel : ViewModel() {
             return destinations
         }
 
+        //suspend this database get including the destlist->destination population since it takes a long time
         firebaseRepository
             .getDestinations()
             .whereEqualTo("city", city)
