@@ -21,28 +21,40 @@ class MainViewModel : ViewModel() {
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     init {
-        getDestinations()
+        getDestinationsData()
     }
 
-    fun getDestinations(){               //Coroutine scope wrapper for the heavy suspend function that does the DB loading asynchronously
+    fun getDestinationsData(){               //Coroutine scope wrapper for the heavy suspend function that does the DB loading asynchronously
         uiScope.launch {
             getDestinationsFromFirebase()
-            //Modify fragment UI from here
+            //Modify fragment UI from here if using a real-time snapshot to monitor the database
         }
     }
 
-    // get realtime updates from Firestore DB for destinations asynchronously via coroutine, filter by city
-    suspend fun getDestinationsFromFirebase():LiveData<List<Destination>>{
+    // get updates from Firestore DB for destinations asynchronously via coroutine, filter by city
+    // can change to realtime updates if we use the Snapshot listener for when we migrate to TripAdvisor database or when we anticipate more live updates to the current
+    suspend fun getDestinationsFromFirebase(){
         return withContext(Dispatchers.IO) {
             if (city == "") {
                 destinations.value = null
-                destinations
             }
 
             firebaseRepository
                 .getDestinations()
                 .whereEqualTo("city", city)
-                .addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
+                .get()
+                .addOnSuccessListener { documents ->
+                    var destlist: MutableList<Destination> = mutableListOf()
+                    for (doc in documents!!) {
+                        var destinationItem = doc.toObject(Destination::class.java)
+                        destlist.add(destinationItem)
+                    }
+                    destinations.value = destlist
+                }
+                .addOnFailureListener { exception ->
+                    Log.w(TAG, "Error getting documents: ", exception)
+                }
+                /*.addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
                     if (e != null) {
                         Log.w(TAG, "Listen failed.", e)
                         destinations.value = null
@@ -55,10 +67,12 @@ class MainViewModel : ViewModel() {
                         destlist.add(destinationItem)
                     }
                     destinations.value = destlist
-                })
-
-            destinations
+                })*/
         }
+    }
+
+    fun getDestinations(): LiveData<List<Destination>>{
+        return destinations
     }
 
     fun getCountry(): String {
