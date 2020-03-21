@@ -1,11 +1,13 @@
 package com.example.asiaeast.models
 
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MainFirestoreRepository {
 
     private var firestoreDB = FirebaseFirestore.getInstance() //access to Firebase cloud DB
+    var user = FirebaseAuth.getInstance().currentUser
 
     //Todo: Add authorization
 

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.QuerySnapshot
+import kotlinx.coroutines.*
 
 class MainViewModel : ViewModel() {
 
@@ -16,34 +17,48 @@ class MainViewModel : ViewModel() {
 
     private val firebaseRepository = MainFirestoreRepository()
     private val destinations: MutableLiveData<List<Destination>> = MutableLiveData()
+    private var viewModelJob = Job()
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    // get realtime updates from Firestore DB regarding saved destinations, filter by city
-    fun getDestinations(): LiveData<List<Destination>> {
-        if (city == "") {
-            destinations.value = null
-            return destinations
+    init {
+        getDestinations()
+    }
+
+    fun getDestinations(){               //Coroutine scope wrapper for the heavy suspend function that does the DB loading asynchronously
+        uiScope.launch {
+            getDestinationsFromFirebase()
+            //Modify fragment UI from here
         }
+    }
 
-        //suspend this database get including the destlist->destination population since it takes a long time
-        firebaseRepository
-            .getDestinations()
-            .whereEqualTo("city", city)
-            .addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
-                if (e != null) {
-                    Log.w(TAG, "Listen failed.", e)
-                    destinations.value = null
-                    return@EventListener
-                }
+    // get realtime updates from Firestore DB for destinations asynchronously via coroutine, filter by city
+    suspend fun getDestinationsFromFirebase():LiveData<List<Destination>>{
+        return withContext(Dispatchers.IO) {
+            if (city == "") {
+                destinations.value = null
+                destinations
+            }
 
-                var destlist: MutableList<Destination> = mutableListOf()
-                for (doc in value!!) {
-                    var destinationItem = doc.toObject(Destination::class.java)
-                    destlist.add(destinationItem)
-                }
-                destinations.value = destlist
-            })
+            firebaseRepository
+                .getDestinations()
+                .whereEqualTo("city", city)
+                .addSnapshotListener(EventListener<QuerySnapshot> { value, e ->
+                    if (e != null) {
+                        Log.w(TAG, "Listen failed.", e)
+                        destinations.value = null
+                        return@EventListener
+                    }
 
-        return destinations
+                    var destlist: MutableList<Destination> = mutableListOf()
+                    for (doc in value!!) {
+                        var destinationItem = doc.toObject(Destination::class.java)
+                        destlist.add(destinationItem)
+                    }
+                    destinations.value = destlist
+                })
+
+            destinations
+        }
     }
 
     fun getCountry(): String {
@@ -70,5 +85,10 @@ class MainViewModel : ViewModel() {
 
     fun setDays(ndays: Int) {
         days = ndays
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
     }
 }
