@@ -26,7 +26,9 @@ class MainDrawerActivity : AppCompatActivity() {
 
         navController = findNavController(R.id.main_nav_host)
 
-        val mainViewModel: MainViewModel by viewModels()       //Create viewmodel for the first time, persists through lifecycle of activity (through all fragments)
+        //Create viewmodel for the first time, persists through lifecycle of activity (through all fragments)
+        //Don't use viewmodelfactory because we don't need to pass data to viewmodel straight away
+        val mainViewModel: MainViewModel by viewModels()
 
         appBarConfiguration = AppBarConfiguration.Builder(
                 R.id.editInputsFragment,
