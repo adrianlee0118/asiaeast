@@ -1,7 +1,10 @@
 package com.example.asiaeast
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -14,6 +17,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.asiaeast.models.MainViewModel
 import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.IdpResponse
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainDrawerActivity : AppCompatActivity() {
@@ -107,14 +112,10 @@ class MainDrawerActivity : AppCompatActivity() {
     }
 
     private fun createSignInIntent() {
-        // [START auth_fui_create_intent]
-        // Choose authentication providers
         val providers = arrayListOf(
             AuthUI.IdpConfig.EmailBuilder().build(),
-            AuthUI.IdpConfig.PhoneBuilder().build(),
-            AuthUI.IdpConfig.GoogleBuilder().build(),
-            AuthUI.IdpConfig.FacebookBuilder().build(),
-            AuthUI.IdpConfig.TwitterBuilder().build())
+            AuthUI.IdpConfig.GoogleBuilder().build()
+        )
 
         // Create and launch sign-in intent
         startActivityForResult(
@@ -122,12 +123,34 @@ class MainDrawerActivity : AppCompatActivity() {
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
                 .build(),
-            RC_SIGN_IN)
-        // [END auth_fui_create_intent]
+            RC_SIGN_IN
+        )
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_SIGN_IN) {
+            val response = IdpResponse.fromResultIntent(data)
+
+            if (resultCode == Activity.RESULT_OK) {
+                val user = FirebaseAuth.getInstance().currentUser
+                Toast.makeText(this,"Successfully signed in",Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this,"Sign-in failed",Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun signOut() {
+        AuthUI.getInstance()
+            .signOut(this)
+            .addOnCompleteListener {
+                Toast.makeText(this,"Signed out",Toast.LENGTH_SHORT).show()
+            }
     }
 
     companion object {
-
         private const val RC_SIGN_IN = 123
     }
 }
