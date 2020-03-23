@@ -30,7 +30,8 @@ class MainViewModel : ViewModel() {
     }
 
     // get updates from Firestore DB for destinations asynchronously via coroutine, filter by city
-    // can change to realtime updates if we use the Snapshot listener for when we migrate to TripAdvisor database or when we anticipate more live updates to the current
+    // can change to realtime updates if we use the Snapshot listener instead of .get() for when
+    // we migrate to TripAdvisor database or when we anticipate more live updates to the current
     suspend fun getDestinationsFromFirebase(): MutableLiveData<List<Destination>>{
         return withContext(Dispatchers.IO) {
             if (city == "") {

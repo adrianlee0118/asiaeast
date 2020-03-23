@@ -13,6 +13,7 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.asiaeast.models.MainViewModel
+import com.firebase.ui.auth.AuthUI
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainDrawerActivity : AppCompatActivity() {
@@ -103,5 +104,30 @@ class MainDrawerActivity : AppCompatActivity() {
                 super.onBackPressed() //If drawer is already in closed condition then go back
             }
         }
+    }
+
+    private fun createSignInIntent() {
+        // [START auth_fui_create_intent]
+        // Choose authentication providers
+        val providers = arrayListOf(
+            AuthUI.IdpConfig.EmailBuilder().build(),
+            AuthUI.IdpConfig.PhoneBuilder().build(),
+            AuthUI.IdpConfig.GoogleBuilder().build(),
+            AuthUI.IdpConfig.FacebookBuilder().build(),
+            AuthUI.IdpConfig.TwitterBuilder().build())
+
+        // Create and launch sign-in intent
+        startActivityForResult(
+            AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .build(),
+            RC_SIGN_IN)
+        // [END auth_fui_create_intent]
+    }
+
+    companion object {
+
+        private const val RC_SIGN_IN = 123
     }
 }
