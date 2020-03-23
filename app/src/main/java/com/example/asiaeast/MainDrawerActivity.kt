@@ -111,13 +111,13 @@ class MainDrawerActivity : AppCompatActivity() {
         }
     }
 
+    // Create and launch sign-in intent, will launch the "choose account" dialogue
     private fun createSignInIntent() {
         val providers = arrayListOf(
             AuthUI.IdpConfig.EmailBuilder().build(),
             AuthUI.IdpConfig.GoogleBuilder().build()
         )
 
-        // Create and launch sign-in intent
         startActivityForResult(
             AuthUI.getInstance()
                 .createSignInIntentBuilder()
@@ -127,6 +127,7 @@ class MainDrawerActivity : AppCompatActivity() {
         )
     }
 
+    //This method returns when the sign-in flow from the launched sign-in intent is complete
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
