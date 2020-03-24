@@ -111,6 +111,7 @@ class MainDrawerActivity : AppCompatActivity() {
         }
     }
 
+    /*
     // Create and launch sign-in intent, will launch the "choose account" dialogue
     private fun createSignInIntent() {
         val providers = arrayListOf(
@@ -153,5 +154,5 @@ class MainDrawerActivity : AppCompatActivity() {
 
     companion object {
         private const val RC_SIGN_IN = 123
-    }
+    }*/
 }
