@@ -1,10 +1,7 @@
 package com.example.asiaeast
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -16,9 +13,6 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.asiaeast.models.MainViewModel
-import com.firebase.ui.auth.AuthUI
-import com.firebase.ui.auth.IdpResponse
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainDrawerActivity : AppCompatActivity() {
@@ -110,49 +104,4 @@ class MainDrawerActivity : AppCompatActivity() {
             }
         }
     }
-
-    /*
-    // Create and launch sign-in intent, will launch the "choose account" dialogue
-    private fun createSignInIntent() {
-        val providers = arrayListOf(
-            AuthUI.IdpConfig.EmailBuilder().build(),
-            AuthUI.IdpConfig.GoogleBuilder().build()
-        )
-
-        startActivityForResult(
-            AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setAvailableProviders(providers)
-                .build(),
-            RC_SIGN_IN
-        )
-    }
-
-    //This method returns when the sign-in flow from the launched sign-in intent is complete
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == RC_SIGN_IN) {
-            val response = IdpResponse.fromResultIntent(data)
-
-            if (resultCode == Activity.RESULT_OK) {
-                val user = FirebaseAuth.getInstance().currentUser
-                Toast.makeText(this,"Successfully signed in",Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this,"Sign-in failed",Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-    private fun signOut() {
-        AuthUI.getInstance()
-            .signOut(this)
-            .addOnCompleteListener {
-                Toast.makeText(this,"Signed out",Toast.LENGTH_SHORT).show()
-            }
-    }
-
-    companion object {
-        private const val RC_SIGN_IN = 123
-    }*/
 }
