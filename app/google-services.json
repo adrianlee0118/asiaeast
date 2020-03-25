@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "393713322049",
+    "firebase_url": "https://asiaeast.firebaseio.com",
+    "project_id": "asiaeast",
+    "storage_bucket": "asiaeast.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:393713322049:android:472128f0363dafbdbc1ec0",
+        "android_client_info": {
+          "package_name": "com.example.asiaeast"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "393713322049-a996b0087j3nghrbha2pt5u6a69kcnj3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVWTnqsNtgKBFtAedSdPnZPAsGy9wUW38"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "393713322049-a996b0087j3nghrbha2pt5u6a69kcnj3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
