@@ -29,4 +29,10 @@
         android:label="Preview Schedule"
         tools:layout="@layout/fragment_schedule_preview" />
 
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.asiaeast.fragments.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login" />
+
 </navigation>
