@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.example.asiaeast.R
 import com.example.asiaeast.models.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -26,5 +27,12 @@ class LoginFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        navController = findNavController() //Initialising navController
+
+        //TODO: Connect to loginfragment ui components
+        //TODO: Logic for signing in with email/password as per https://firebase.google.com/docs/auth/android/password-auth
+    }
 }
