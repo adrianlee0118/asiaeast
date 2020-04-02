@@ -34,5 +34,6 @@ class LoginFragment : Fragment() {
 
         //TODO: Connect to loginfragment ui components
         //TODO: Logic for signing in with email/password as per https://firebase.google.com/docs/auth/android/password-auth
+        //TODO: Update navigation graph and navigation menu, main activity controller visibility for fragments
     }
 }
