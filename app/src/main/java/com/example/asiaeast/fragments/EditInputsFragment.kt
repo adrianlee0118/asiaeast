@@ -161,6 +161,6 @@ class EditInputsFragment : Fragment(), View.OnClickListener {
 
     private fun goToNextFragment() {
         val action = InputFragmentDirections.actionInputFragmentToMapFragment() //if needed pass values to frag here NB: add those arguments to nav_graph also
-        navController.navigate(action) //navigation
+        navController.navigate(action)
     }
 }

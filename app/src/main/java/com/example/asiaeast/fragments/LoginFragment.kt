@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -28,17 +29,17 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_login, container, false)
+
+        auth = FirebaseAuth.getInstance()
+
+        //TODO: Logic for signing in with email/password as per https://firebase.google.com/docs/auth/android/password-auth
+        //TODO: Update navigation graph and navigation menu, main activity controller visibility for fragments
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         navController = findNavController() //Initialising navController
-
-        auth = FirebaseAuth.getInstance()
-
-        //TODO: Logic for signing in with email/password as per https://firebase.google.com/docs/auth/android/password-auth
-        //TODO: Update navigation graph and navigation menu, main activity controller visibility for fragments
     }
 
     override fun onStart() {
@@ -55,11 +56,7 @@ class LoginFragment : Fragment() {
                 "Login successful.",
                 Toast.LENGTH_SHORT
             ).show()
-            detail.text = getString(R.string.firebase_status_fmt, user.uid)
-
-            emailPasswordButtons.visibility = View.GONE
-            emailPasswordFields.visibility = View.GONE
-            signedInButtons.visibility = View.VISIBLE
+            dialogue.text = "Login successful."
 
             if (user.isEmailVerified) {
                 verifyEmailButton.visibility = View.GONE
@@ -72,11 +69,14 @@ class LoginFragment : Fragment() {
                 "Error logging in. Try again.",
                 Toast.LENGTH_SHORT
             ).show()
-            detail.text = null
+            dialogue.text = "Error logging in. Try again."
+        }
+    }
 
-            emailPasswordButtons.visibility = View.VISIBLE
-            emailPasswordFields.visibility = View.VISIBLE
-            signedInButtons.visibility = View.GONE
+    override fun onClick(v: View) {
+        val i = v.id
+        when (i) {
+            login_button -> signIn(email.text.toString(), password.text.toString())
         }
     }
 }
