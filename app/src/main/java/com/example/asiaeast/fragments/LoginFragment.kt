@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
@@ -11,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.asiaeast.R
 import com.example.asiaeast.models.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.fragment_login.*
 
 
@@ -41,8 +43,40 @@ class LoginFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
-        updateUI(currentUser)
+        //Go to next fragment if ccurrentUser is not null, else don't as per private fun updateUI(user: FirebaseUser?) on the Github page
+        goToInputs(currentUser)
+    }
+
+    private fun goToInputs(user: FirebaseUser?) {
+        if (user != null) {
+            Toast.makeText(
+                getActivity()!!.getBaseContext(),
+                "Login successful.",
+                Toast.LENGTH_SHORT
+            ).show()
+            detail.text = getString(R.string.firebase_status_fmt, user.uid)
+
+            emailPasswordButtons.visibility = View.GONE
+            emailPasswordFields.visibility = View.GONE
+            signedInButtons.visibility = View.VISIBLE
+
+            if (user.isEmailVerified) {
+                verifyEmailButton.visibility = View.GONE
+            } else {
+                verifyEmailButton.visibility = View.VISIBLE
+            }
+        } else {
+            Toast.makeText(
+                getActivity()!!.getBaseContext(),
+                "Error logging in. Try again.",
+                Toast.LENGTH_SHORT
+            ).show()
+            detail.text = null
+
+            emailPasswordButtons.visibility = View.VISIBLE
+            emailPasswordFields.visibility = View.VISIBLE
+            signedInButtons.visibility = View.GONE
+        }
     }
 }
