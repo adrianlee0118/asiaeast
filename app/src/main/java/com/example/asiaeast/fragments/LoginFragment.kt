@@ -43,8 +43,9 @@ class LoginFragment : Fragment() {
             signIn(email.text.toString(), password.text.toString())
         }
 
-        //TODO: Logic for signing in with email/password as per https://firebase.google.com/docs/auth/android/password-auth
+        //TODO: Fix logic for signing in with email/password in signIn() method below as per https://firebase.google.com/docs/auth/android/password-auth
         //TODO: Update navigation graph and navigation menu, main activity controller visibility for fragments
+        //TODO: Add logout button and visibility changeability functions on buttons
     }
 
     override fun onStart() { //happens after oncreate, go to inputs fragment if authorization is already granted
@@ -79,7 +80,6 @@ class LoginFragment : Fragment() {
             return
         }
 
-        // [START sign_in_with_email]
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -90,7 +90,7 @@ class LoginFragment : Fragment() {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
+                    Toast.makeText(getActivity()!!.getBaseContext(), "Authentication failed.",
                         Toast.LENGTH_SHORT).show()
                     updateUI(null)
                     // [START_EXCLUDE]
