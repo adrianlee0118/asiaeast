@@ -1,6 +1,7 @@
 package com.example.asiaeast.fragments
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -102,6 +103,28 @@ class LoginFragment : Fragment() {
                 }
             }
         // [END sign_in_with_email]
+    }
+
+    private fun validateForm(): Boolean { //Check if inputs are empty
+        var valid = true
+
+        //TODO: add logic for checking if email meets email regulations possibly using a Regex expression
+
+        if (TextUtils.isEmpty(email.text.toString())) {
+            email.error = "Required."
+            valid = false
+        } else {
+            email.error = null
+        }
+
+        if (TextUtils.isEmpty(password.text.toString())) {
+            password.error = "Required."
+            valid = false
+        } else {
+            password.error = null
+        }
+
+        return valid
     }
 
     private fun signOut() {
