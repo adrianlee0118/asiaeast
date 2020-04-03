@@ -75,7 +75,7 @@
     <string name="inputs">Inputs</string>
     <string name="preview">Preview</string>
     <string name="send">Send to Email</string>
-    <string name="login_header">Enter your login information</string>
+    <string name="login_header">Enter your Firebase login information</string>
     <string name="email_h">Email:</string>
     <string name="password_h">Password:</string>
     <string name="login_btn">Login</string>

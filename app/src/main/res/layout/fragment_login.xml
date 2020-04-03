@@ -10,11 +10,11 @@
         android:id="@+id/password_h"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="52dp"
         android:text="@string/password_h"
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/email_h"
-        tools:layout_editor_absoluteX="91dp" />
+        tools:layout_editor_absoluteX="54dp" />
 
     <EditText
         android:id="@+id/email"
@@ -39,24 +39,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
+        android:layout_marginTop="40dp"
         android:text="@string/email_h"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/header"
-        tools:layout_editor_absoluteY="108dp" />
+        app:layout_constraintTop_toBottomOf="@+id/header" />
 
     <Button
         android:id="@+id/login button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:text="@string/login_btn"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="243dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/password_h" />
 
     <TextView
         android:id="@+id/header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:text="@string/login_header"
         android:textSize="18sp"
         android:textStyle="bold"
