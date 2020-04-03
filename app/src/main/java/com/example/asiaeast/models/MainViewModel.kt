@@ -9,7 +9,7 @@ import kotlinx.coroutines.*
 class MainViewModel : ViewModel() {
 
     private val TAG = "MAIN_VIEW_MODEL"
-    private var country = ""              //default values
+    private var country = ""
     private var city = ""
     private var days = -1
 
@@ -83,7 +83,6 @@ class MainViewModel : ViewModel() {
 
     fun setCountry(ncountry: String) {
         country = ncountry
-        //change filter on dataset
     }
 
     fun getCity(): String {
@@ -92,7 +91,6 @@ class MainViewModel : ViewModel() {
 
     fun setCity(ncity: String) {
         city = ncity
-        //change filter on city
     }
 
     fun getDays(): Int {
