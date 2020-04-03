@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/email_h"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -14,7 +14,7 @@
         tools:layout_editor_absoluteY="99dp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/password_h"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -22,7 +22,7 @@
         tools:layout_editor_absoluteY="142dp" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -30,7 +30,7 @@
         tools:layout_editor_absoluteY="101dp" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -38,7 +38,7 @@
         tools:layout_editor_absoluteY="145dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/login button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button"
