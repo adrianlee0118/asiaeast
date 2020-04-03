@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.asiaeast.R
 import com.example.asiaeast.models.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.fragment_login.*
 
 
 class LoginFragment : Fragment() {
@@ -31,6 +32,8 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         navController = findNavController() //Initialising navController
+
+        
 
         //TODO: Connect to loginfragment ui components
         //TODO: Logic for signing in with email/password as per https://firebase.google.com/docs/auth/android/password-auth
