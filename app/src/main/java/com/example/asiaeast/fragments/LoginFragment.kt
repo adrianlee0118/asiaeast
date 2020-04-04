@@ -94,10 +94,6 @@ class LoginFragment : Fragment() {
                     checkForMultiFactorFailure(task.exception!!)
                     // [END_EXCLUDE]
                 }
-
-                if (!task.isSuccessful) {
-                    status.setText(R.string.auth_failed)
-                }
             }
         // [END sign_in_with_email]
     }
