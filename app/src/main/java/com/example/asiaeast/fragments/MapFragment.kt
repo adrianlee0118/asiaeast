@@ -42,6 +42,8 @@ class MapFragment : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
         }
+
+        plotMap()
     }
 
     fun plotMap() {
